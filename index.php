@@ -9,7 +9,7 @@ $(function() {
 	if (!String.prototype.reduce) {
 		String.prototype.reduce = function() {
 			var s = this,
-				parts = s.replace(/[\t\n\r]/gi, "").trim().split(" "),
+				parts = s.split("\n").join(" ").replace(/[\t\r]/gi, "").trim().split(" "),
 				newParts = [],
 				newString = "";
 			if (s == "")
