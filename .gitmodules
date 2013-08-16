@@ -1,0 +1,3 @@
+[submodule "assets/js/codemirror"]
+	path = assets/js/codemirror
+	url = git@github.com:gabrielnahmias/CodeMirror.git
