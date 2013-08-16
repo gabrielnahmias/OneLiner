@@ -12,7 +12,14 @@ define("DIR_CM", DIR_JS."/codemirror");
 <link rel="stylesheet" href="<?=DIR_CM?>/lib/codemirror.css" type="text/css">
 <script src="<?=DIR_CM?>/lib/codemirror.js"></script>
 <!-- Modes -->
-<script src="<?=DIR_CM?>/mode/javascript/javascript.js"></script>
+<?php
+$dirs = scandir(DIR_CM."/mode");
+foreach($dirs as $dir) {
+	if (!in_array($dir, array(".","..","index.html","meta.js","rpm")))
+		print "<script src=\"".DIR_CM."/mode/$dir/$dir.js\"></script>\r\n";
+}
+?>
+
 <!-- jQuery -->
 <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">
