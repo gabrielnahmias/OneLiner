@@ -1,10 +1,23 @@
-<!doctype html>
-<html>
-<head>
+<?php
+define("DIR_ASSETS", "assets");
+define("DIR_CSS", DIR_ASSETS."/css");
+define("DIR_JS", DIR_ASSETS."/js");
+define("DIR_CM", DIR_JS."/codemirror");
+?><!doctype html>
+<html><head>
 <meta charset="utf-8">
 <title>OneLiner</title>
+<link rel="stylesheet" href="<?=DIR_CSS?>/styles.css" type="text/css">
+<!-- CodeMirror -->
+<link rel="stylesheet" href="<?=DIR_CM?>/lib/codemirror.css" type="text/css">
+<script src="<?=DIR_CM?>/lib/codemirror.js"></script>
+<!-- Modes -->
+<script src="<?=DIR_CM?>/mode/javascript/javascript.js"></script>
+<!-- jQuery -->
 <script src="jquery-1.10.2.min.js" type="text/javascript"></script>
 <script type="text/javascript">
+var editor;
+
 $(function() {
 	if (!String.prototype.reduce) {
 		String.prototype.reduce = function() {
@@ -24,7 +37,7 @@ $(function() {
 		}
 	}
 	function change(e){
-		$("#input").val($("#input").val().reduce());
+		editor.setValue(editor.getValue().reduce());
 		e.preventDefault();
 	}
 	
@@ -32,56 +45,7 @@ $(function() {
 	$("input[type=submit]").click(change);
 });
 </script>
-<style type="text/css">
-*:not(h1):not(textarea) {
-	font: 12px Verdana, Geneva, sans-serif;
-}
-body {
-	color: #666666;
-}
-h1 {
-	margin: 5px 0;
-}
-h1, textarea {
-	font-family: Consolas, "Courier New", Courier, monospace;
-}
-h1 span {
-	color: #999999;
-	letter-spacing: 4px;
-}
-input[type=submit] {
-	display: block;
-	width: 100%;
-}
-textarea {
-	border: 2px dashed #666666;
-	border-width: 2px 0;
-	font-size: 14px;
-	height: 200px;
-	margin-bottom: 5px;
-	max-width: 100%;
-	min-width: 100%;
-	padding: 5px 0;
-	width: 100%;
-}
-#input_wrapper {
-/*	border: 2px dashed #666666;
-	border-width: 2px 0;
-	margin-bottom: 5px;
-	padding: 5px 0;*/
-}
-#wrapper {
-	margin: auto;
-	width: 500px;
-}
-.box {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-</style>
 </head>
-
 <body>
 	<div id="wrapper">
     	<h1>OneLiner <span>reduce your text</span></h1>
@@ -92,6 +56,40 @@ textarea {
             <input type="submit" value="Reduce">
         </form>
     </div>
+    <script type="text/javascript">
+	var pending;
+	editor = CodeMirror.fromTextArea($("#input")[0], {
+		mode: "javascript",
+		lineNumbers: true,
+		lineWrapping: true,
+		tabMode: "indent" 
+	});
+	editor.on("change", function() {
+		clearTimeout(pending);
+		setTimeout(update, 400);
+	});
+	function getMode(code) {
+		var mode;
+		if (/(^\s*\(\s*function\b|alert|document|window|location|getElementsByName|getItems|open|close|write|writeln|execCommand|queryCommandEnabled|queryCommandIndeterm|queryCommandState|queryCommandSupported|queryCommandValue|clear|getSelection|captureEvents|releaseEvents|routeEvent|domain|cookie|body|head|images|embeds|plugins|links|forms|scripts|designMode|fgColor|linkColor|vlinkColor|alinkColor|bgColor|anchors|applets|getElementsByTagName|getElementsByTagNameNS|getElementsByClassName|getElementById|createElement|createElementNS|createDocumentFragment|createTextNode|createComment|createProcessingInstruction|importNode|adoptNode|createEvent|createRange|createNodeIterator|createTreeWalker|createCDATASection|createAttribute|createAttributeNS|hasFocus|releaseCapture|enableStyleSheetsForSet|elementFromPoint|caretPositionFromPoint|querySelector|querySelectorAll|getAnonymousNodes|getAnonymousElementByAttribute|getBindingParent|loadBindingDocument|createExpression|createNSResolver|evaluate|implementation|URL|documentURI|compatMode|characterSet|contentType|doctype|documentElement|inputEncoding|referrer|lastModified|readyState|title|dir|defaultView|activeElement|onreadystatechange|onmouseenter|onmouseleave|onwheel|oncopy|oncut|onpaste|onbeforescriptexecute|onafterscriptexecute|currentScript|hidden|visibilityState|styleSheets|selectedStyleSheetSet|lastStyleSheetSet|preferredStyleSheetSet|styleSheetSets|onabort|oncanplay|oncanplaythrough|onchange|onclick|oncontextmenu|ondblclick|ondrag|ondragend|ondragenter|ondragleave|ondragover|ondragstart|ondrop|ondurationchange|onemptied|onended|oninput|oninvalid|onkeydown|onkeypress|onkeyup|onloadeddata|onloadedmetadata|onloadstart|onmousedown|onmousemove|onmouseout|onmouseover|onmouseup|onpause|onplay|onplaying|onprogress|onratechange|onreset|onseeked|onseeking|onselect|onshow|onstalled|onsubmit|onsuspend|ontimeupdate|onvolumechange|onwaiting|onononononblur|onerror|onfocus|onload|onscroll|hasChildNodes|insertBefore|appendChild|replaceChild|removeChild|normalize|cloneNode|isEqualNode|compareDocumentPosition|contains|lookupPrefix|lookupNamespaceURI|isDefaultNamespace|hasAttributes|nodeType|nodeName|baseURI|ownerDocument|parentNode|parentElement|childNodes|firstChild|lastChild|previousSibling|nextSibling|nodeValue|textContent|namespaceURI|prefix|localName|addEventListener|removeEventListener|dispatchEvent)/gi.test(code) || /^\s*[;\(]/.test(code))
+			mode = "javascript";
+		else if (/(select|count|insert|update|delete|from)/gi.test(code))
+			mode = "sql";
+		else if (/(print|echo|foreach)/gi.test(code))
+			mode = "php";
+		/*else if ()
+			mode = "";
+		else if ()
+			mode = "";
+		else if ()
+			mode = "";*/
+		else
+			mode = "text/html";
+		console.debug(mode);
+		return mode;
+	}
+	function update() {
+		editor.setOption("mode", getMode(editor.getValue()));
+	}
+	</script>
 </body>
-
 </html>
