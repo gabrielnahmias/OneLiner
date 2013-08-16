@@ -1,0 +1,45 @@
+body {
+	color: #666666;
+}
+body, input:not([type=text]) {
+	font: 12px Verdana, Geneva, sans-serif;
+}
+h1 {
+	margin: 5px 0;
+}
+	h1 span {
+		font-size: 12px;
+		font-weight: normal;	
+	}
+h1, textarea {
+	font-family: Consolas, "Courier New", Courier, monospace;
+}
+h1 span {
+	color: #999999;
+	letter-spacing: 4px;
+}
+input[type=submit] {
+	display: block;
+	width: 100%;
+}
+textarea {
+	font-size: 14px;
+	height: 200px;
+	max-width: 100%;
+	min-width: 100%;
+	width: 100%;
+}
+#input_wrapper {
+	border: 2px dashed #666666;
+	border-width: 2px 0;
+	margin-bottom: 5px;
+}
+#wrapper {
+	margin: auto;
+	width: 500px;
+}
+.box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
