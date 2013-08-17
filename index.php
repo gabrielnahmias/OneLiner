@@ -1,12 +1,14 @@
 <?php
 define("DIR_ASSETS", "assets");
 define("DIR_CSS", DIR_ASSETS."/css");
+define("DIR_IMG", DIR_ASSETS."/img");
 define("DIR_JS", DIR_ASSETS."/js");
 define("DIR_CM", DIR_JS."/codemirror");
 ?><!doctype html>
 <html><head>
 <meta charset="utf-8">
 <title>OneLiner</title>
+<link rel="shortcut icon" href="<?=DIR_IMG?>/favicon.ico">
 <link rel="stylesheet" href="<?=DIR_CSS?>/styles.css" type="text/css">
 <!-- CodeMirror -->
 <link rel="stylesheet" href="<?=DIR_CM?>/lib/codemirror.css" type="text/css">
