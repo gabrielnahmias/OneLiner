@@ -2,22 +2,24 @@ body {
 	color: #666666;
 }
 body, input:not([type=text]) {
-	font: 12px Verdana, Geneva, sans-serif;
+	font: 12px Consolas, "Courier New", Geneva, sans-serif;
 }
 h1 {
-	margin: 5px 0;
+	display: inline-block;
+	margin-right: 10px;
 }
-	h1 span {
-		font-size: 12px;
-		font-weight: normal;	
-	}
 h1, textarea {
 	font-family: Consolas, "Courier New", Courier, monospace;
 }
-h1 span {
-	color: #999999;
-	letter-spacing: 4px;
+header {
+	margin: 0 0 5px 0;
 }
+	header span {
+		color: #999999;
+		font-size: 12px;
+		font-weight: normal;
+		letter-spacing: 4px;
+	}
 input[type=submit] {
 	display: block;
 	width: 100%;
@@ -43,3 +45,46 @@ textarea {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+
+/* Button */
+
+.button {
+    background-color: #666666;
+    border-bottom: 6px solid #4F4F4F;
+    border-width: 0 0 6px 0;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+	float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    min-width: 100px;
+    padding: 6px 5px 5px;
+    text-align: center;
+    text-decoration: none;
+}
+    .button:visited {
+        background-color: #3A92D2;
+        color: #FFFFFF !important;
+    }
+	.button:hover,
+	.button:active {
+		background-color: #4F4F4F;
+		border-bottom-color: #302F2F;
+	}
+    .button:active {
+        border-width: 0 0 2px 0;
+        margin-top: 4px !important;
+    }
+    .button.caps {
+        text-transform: uppercase;
+    }
+    .button.small {
+        min-height: 18px;
+        min-width: 80px;
+        padding-top: 4px;
+    }
+    .button.strong {
+        font-weight: bold;
+    }
