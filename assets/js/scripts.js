@@ -1,1 +1,4 @@
-var OL = OL || {};
+var OL = {
+	events: {},
+	utils: {}
+};
