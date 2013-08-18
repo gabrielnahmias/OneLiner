@@ -50,6 +50,10 @@ input[type=submit] {
 	display: block;
 	width: 100%;
 }
+option {
+	color: #000000;
+	font-style: normal;
+}
 textarea {
 	font-size: 14px;
 	height: 200px;
@@ -60,7 +64,7 @@ textarea {
 #input_wrapper {
 	border: 2px dashed #666666;
 	border-width: 2px 0;
-	margin-bottom: 5px;
+	margin-bottom: 20px;
 }
 #wrapper {
 	margin: auto;
