@@ -54,15 +54,11 @@ $(function() {
 				parts = s.split("\n").join(" ").replace(/[\s\t\r]/gi, " ").trim().split(" "),
 				newParts = [],
 				newString = "";
-			try {
-				eval("for (part of parts) { if (part != '') { newParts.push(part); } }");
-			} catch(ex) {
-				$.each(parts, function(i, part) {
-					if (part != "") {
-						newParts.push(part);
-					}
-				});
-			}
+			$.each(parts, function(i, part) {
+				if (part != "") {
+					newParts.push(part);
+				}
+			});
 			newString = newParts.join(" ");
 			return newString;
 		}
@@ -80,10 +76,7 @@ $(function() {
 		continuousScanning: 500,
 		indentUnit: 4,
 		lineNumbers: true,
-		lineWrapping: true,/*
-		parserfile: ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "tokenizephp.js", "parsephp.js", "parsephphtmlmixed.js"],
-		stylesheet: ["<?=DIR_CM?>/ext/xmlcolors.css", "<?=DIR_CM?>/ext/jscolors.css", "<?=DIR_CM?>/ext/csscolors.css", "<?=DIR_CM?>/ext/phpcolors.css"],
-		path: "<?=DIR_CM?>/ext/",*/
+		lineWrapping: true,
 		tabMode: "indent"
 	});
 	editor.focus();
@@ -91,7 +84,6 @@ $(function() {
 		clearTimeout(pending);
 		setTimeout(OL.utils.setMode, 400);
 	});
-	
 	// Events, etc.
 	OL.events.reduce = function(e){
 		var input = editor.getValue().reduce();
