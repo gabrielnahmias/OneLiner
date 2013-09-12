@@ -34,23 +34,24 @@ foreach($dirs as $dir)
 <script src="<?=DIR_JS?>/scripts.js" type="text/javascript"></script>
 <!-- Themes -->
 <?php
-$files = array_diff(scandir(DIR_CM."/theme"), array(".","..","index.html"));
-foreach($files as $file)
+$files = array_diff(scandir(DIR_CM."/theme"), array(".","..","index.html","img"));
+foreach($files as $file){
 	print "<link rel=\"stylesheet\" href=\"".DIR_CM."/theme/$file\" type=\"text/css\">\r\n";
+}
 ?>
 <script type="text/javascript">
 // One of two global variables declared (OL and editor).
 var editor;
 $(function() {
 	var input = document.getElementById("theme"),
-		modal = { modal: true },
+		modal = { modal: true, buttons: { OK: function() { $(this).dialog("close"); } } },
 		pending,
 		reverseStyles = { color: "#000000", fontStyle: "normal" },
 		styles = { color: "#AAAAAA", fontStyle: "italic" };
 	if (!String.prototype.reduce) {
 		String.prototype.reduce = function() {
 			var s = this,
-				parts = s.split("\n").join(" ").replace(/[\t\r]/gi, "").trim().split(" "),
+				parts = s.split("\n").join(" ").replace(/[\s\t\r]/gi, " ").trim().split(" "),
 				newParts = [],
 				newString = "";
 			try {
@@ -95,7 +96,7 @@ $(function() {
 	OL.events.reduce = function(e){
 		var input = editor.getValue().reduce();
 		if (input == "")
-			$('<div title="Warning">Enter some text.</div>').dialog(modal);
+			$('<div title="Warning"><span class="ui-icon ui-icon-alert"></span>Enter some text.</div>').dialog(modal);
 		else
 			editor.setValue(input);
 		e.preventDefault();
