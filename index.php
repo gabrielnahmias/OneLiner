@@ -1,4 +1,6 @@
 <?php
+define("NAME", "OneLiner");
+define("VER", "1.5");
 define("VER_JQ", "1.10.2");
 define("VER_JQUI", "1.10.3");
 define("DIR_ASSETS", "assets");
@@ -11,7 +13,7 @@ define("DIR_CM", DIR_JS."/codemirror");
 ?><!doctype html>
 <html><head>
 <meta charset="utf-8">
-<title>OneLiner</title>
+<title><?=NAME?></title>
 <link rel="shortcut icon" href="<?=DIR_IMG?>/favicon.ico">
 <!-- Console.js -->
 <script src="<?=DIR_CON?>/Console.js" type="text/javascript"></script>
@@ -178,7 +180,7 @@ $(function() {
 <body>
 	<div id="wrapper">
     	<header>
-            <h1>OneLiner</h1>
+            <h1><?=NAME?></h1>
             <span>reduce your text</span>
             <select id="theme">
                 <option value="">Select a theme</option>
