@@ -26,6 +26,7 @@
 }
 body {
 	color: #666666;
+	padding-bottom: 50px;
 }
 body, input:not([type=text]) {
 	font: 12px Consolas, "Courier New", Geneva, sans-serif;
