@@ -15,6 +15,8 @@ define("DIR_CM", DIR_JS."/codemirror");
 <meta charset="utf-8">
 <title><?=NAME?></title>
 <link rel="shortcut icon" href="<?=DIR_IMG?>/favicon.ico">
+<!-- normalize.css -->
+<link rel="stylesheet" href="<?=DIR_CSS?>/normalize.min.css" type="text/css">
 <!-- Console.js -->
 <script src="<?=DIR_CON?>/Console.js" type="text/javascript"></script>
 <!-- CodeMirror -->
