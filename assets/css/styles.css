@@ -127,14 +127,20 @@ textarea {
 /* jQuery UI Overrides */
 
 .ui-dialog {
-	font-size: 1.2em;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+	font-size: 12px;
 }
 	.ui-dialog .ui-dialog-titlebar {
-		border-radius: 3px 3px 0 0;
+		font-size: 15px;
+		border-radius: 5px 5px 0 0;
 		border-width: 0 0 1px;
 		margin: -3px -3px 0;
 	}
 	.ui-dialog .ui-dialog-content {
-		font-size: 12px;
+		font-size: 14px;
 		padding: 10px;
 	}
+		.ui-dialog .ui-dialog-content .ui-icon {
+			float: left;
+			margin: 0 20px 0 0;
+		}
