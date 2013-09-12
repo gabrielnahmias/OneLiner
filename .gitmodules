@@ -1,3 +1,6 @@
 [submodule "assets/js/codemirror"]
 	path = assets/js/codemirror
 	url = git@github.com:gabrielnahmias/CodeMirror.git
+[submodule "assets/js/Console"]
+	path = assets/js/Console
+	url = git@github.com:gabrielnahmias/Console.js.git
