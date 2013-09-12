@@ -50,10 +50,6 @@ input[type=submit] {
 	display: block;
 	width: 100%;
 }
-option {
-	color: #000000;
-	font-style: normal;
-}
 textarea {
 	font-size: 14px;
 	height: 200px;
@@ -118,3 +114,27 @@ textarea {
     .button.strong {
         font-weight: bold;
     }
+
+.normal {
+	color: #000000 !important;
+	font-style: normal !important;
+}
+.placeholder {
+	color: #AAAAAA;
+	font-style: italic !important;
+}
+
+/* jQuery UI Overrides */
+
+.ui-dialog {
+	font-size: 1.2em;
+}
+	.ui-dialog .ui-dialog-titlebar {
+		border-radius: 3px 3px 0 0;
+		border-width: 0 0 1px;
+		margin: -3px -3px 0;
+	}
+	.ui-dialog .ui-dialog-content {
+		font-size: 12px;
+		padding: 10px;
+	}
