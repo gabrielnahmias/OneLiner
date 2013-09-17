@@ -1,5 +1,5 @@
 <?php
-define("NAME", "PHP Testbox");
+define("NAME", "phpTestBox");
 define("VER", "2.0");
 define("VER_JQ", "1.10.2");
 define("VER_JQUI", "1.10.3");
@@ -75,7 +75,7 @@ $(function() {
 			});
 		}
 	}
-	OL.globals = { theme: OL.utils.getQueryVar("theme") || localStorage["theme"] || "" };
+	OL.globals = { theme: OL.utils.getQueryVar("theme") || localStorage["theme"] || "elegant" };
 	editor = CodeMirror.fromTextArea($("#input")[0], {
 		continuousScanning: 500,
 		indentUnit: 4,
@@ -110,37 +110,10 @@ $(function() {
 		editor.setOption("parserfile", ((enabled) ? ["parsexml.js", "parsecss.js", "tokenizejavascript.js", "parsejavascript.js", "tokenizephp.js", "parsephp.js", "parsephphtmlmixed.js"] : []));
 		editor.setOption("stylesheet", ((enabled) ? ["<?=DIR_CM?>/ext/xmlcolors.css", "<?=DIR_CM?>/ext/jscolors.css", "<?=DIR_CM?>/ext/csscolors.css", "<?=DIR_CM?>/ext/phpcolors.css"] : []));
 	}
-	OL.utils.getMode = function(code) {
-		var mode,
-			jsKeywords = /(^\s*\(\s*function\b|alert|document|window|location|getElementsByName|getItems|open|close|write|writeln|execCommand|queryCommandEnabled|queryCommandIndeterm|queryCommandState|queryCommandSupported|queryCommandValue|clear|getSelection|captureEvents|releaseEvents|routeEvent|domain|cookie|body|head|images|embeds|plugins|links|forms|scripts|designMode|fgColor|linkColor|vlinkColor|alinkColor|bgColor|anchors|applets|getElementsByTagName|getElementsByTagNameNS|getElementsByClassName|getElementById|createElement|createElementNS|createDocumentFragment|createTextNode|createComment|createProcessingInstruction|importNode|adoptNode|createEvent|createRange|createNodeIterator|createTreeWalker|createCDATASection|createAttribute|createAttributeNS|hasFocus|releaseCapture|enableStyleSheetsForSet|elementFromPoint|caretPositionFromPoint|querySelector|querySelectorAll|getAnonymousNodes|getAnonymousElementByAttribute|getBindingParent|loadBindingDocument|createExpression|createNSResolver|evaluate|implementation|URL|documentURI|compatMode|characterSet|contentType|doctype|documentElement|inputEncoding|referrer|lastModified|readyState|title|dir|defaultView|activeElement|onreadystatechange|onmouseenter|onmouseleave|onwheel|oncopy|oncut|onpaste|onbeforescriptexecute|onafterscriptexecute|currentScript|hidden|visibilityState|styleSheets|selectedStyleSheetSet|lastStyleSheetSet|preferredStyleSheetSet|styleSheetSets|onabort|oncanplay|oncanplaythrough|onchange|onclick|oncontextmenu|ondblclick|ondrag|ondragend|ondragenter|ondragleave|ondragover|ondragstart|ondrop|ondurationchange|onemptied|onended|oninput|oninvalid|onkeydown|onkeypress|onkeyup|onloadeddata|onloadedmetadata|onloadstart|onmousedown|onmousemove|onmouseout|onmouseover|onmouseup|onpause|onplay|onplaying|onprogress|onratechange|onreset|onseeked|onseeking|onselect|onshow|onstalled|onsubmit|onsuspend|ontimeupdate|onvolumechange|onwaiting|onononononblur|onerror|onfocus|onload|onscroll|hasChildNodes|insertBefore|appendChild|replaceChild|removeChild|normalize|cloneNode|isEqualNode|compareDocumentPosition|contains|lookupPrefix|lookupNamespaceURI|isDefaultNamespace|hasAttributes|nodeType|nodeName|baseURI|ownerDocument|parentNode|parentElement|childNodes|firstChild|lastChild|previousSibling|nextSibling|nodeValue|textContent|namespaceURI|prefix|localName|addEventListener|removeEventListener|dispatchEvent)/gi;
-		if (/\<.*\>/gi.test(code) && jsKeywords.test(code) && (/\<\?php/gi.test(code) || /\<\?/gi.test(code)))
-			mode = "mixed";
-		else if (jsKeywords.test(code) || /^\s*[;\(]/.test(code))
-			mode = "javascript";
-		else if (/(select|count|insert|update|delete|from)/gi.test(code))
-			mode = "sql";
-		else if (/(\<\?php|print|echo|foreach)/gi.test(code))
-			mode = "php";
-		/*else if ()
-			mode = "";
-		else if ()
-			mode = "";*/
-		else if (typeof mode === 'undefined')
-			mode = "text/html";
-		//console.debug(mode);
-		return mode;
-	}
 	OL.utils.setMode = function () {
-		// Determine the mode from the given text (detect the programming/scripting language).
-		var mode = OL.utils.getMode(editor.getValue());
-		// If the mode is mixed, set it so.
-		if (mode == "mixed")
-			OL.utils.setMixedMode();
-		// Otherwise, set the mode detected.
-		else
-			editor.setOption("mode", mode);
+		var mode = "mixed";//OL.utils.getMode(editor.getValue());
+		OL.utils.setMixedMode();
 	}
-	
 	// Deal with themes.
 	if (OL.globals.theme) {
 		for (var i = 0; i < input.length; i++) {
